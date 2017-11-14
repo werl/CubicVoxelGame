@@ -16,6 +16,16 @@ int main(void) {
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
+    glfwWindowHint(GLFW_SAMPLES, 4);
+    // OpenGL major version
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    // OpenGL minor version
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    // Enable OpenGL forward compatibility. Required on Mac
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    // Set the OpenGL profile to the core profile
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
     window = glfwCreateWindow(width, height, windowTitle.c_str(), NULL, NULL);
     if (!window) {
         glfwTerminate();
