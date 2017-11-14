@@ -38,7 +38,7 @@ include_directories(lib/glbinding/sources/include)
 set(BUILD_SHARED_LIBS   OFF CACHE BOOL "Build cppfs shared library" FORCE)
 set(OPTION_BUILD_TESTS  OFF CACHE BOOL "Build cppfs tests" FORCE)
 
-# Setup cppfs 
+# Setup cppfs
 #add_subdirectory(lib/cppfs)
 #include_directories(lib/cppfs/source/cppfs/include)
 
