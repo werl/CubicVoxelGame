@@ -32,6 +32,5 @@ string FileLoader::getFilePath() {
 }
 
 FileLoader::~FileLoader() {
-    delete contents;
-    delete filePath;
+
 }
