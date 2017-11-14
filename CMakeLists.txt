@@ -44,7 +44,8 @@ set(OPTION_BUILD_TESTS  OFF CACHE BOOL "Build cppfs tests" FORCE)
 
 
 file(GLOB SOURCE_FILES "src/*.cpp")
-add_executable(TransportConcept2D ${SOURCE_FILES})
+file(GLOB HEADRE_FILES "src/*.hpp")
+add_executable(TransportConcept2D ${HEADER_FILES} ${SOURCE_FILES})
 
 # Link GLFW
 target_link_libraries(TransportConcept2D PUBLIC glfw ${EXTRA_LIBS})
