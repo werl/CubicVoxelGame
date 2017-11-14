@@ -37,6 +37,17 @@ int main(void) {
 
     glbinding::Binding::initialize();
 
+    // Set the clear colour
+    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
+    // Enable depth test
+    glEnable(GL_DEPTH_TEST);
+    // Accept fragment if it is closer to the camera then the former one
+    glDepthFunc(GL_LESS);
+    // Cull triangles which normal is not towards the camera
+    glEnable(GL_CULL_FACE);
+
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         /* Render here */
