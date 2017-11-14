@@ -9,6 +9,7 @@ Libraries and the versions I'm using.
 * [GLFW 3.2.1](http://www.glfw.org)
 * [GLM 0.9.8.5](http://glm.g-truc.net/0.9.8/index.html)
 * [stb Image 2.16](https://github.com/nothings/stb)
+* [tinyobjloader](http://syoyo.github.io/tinyobjloader/)
 
 ## Compiling
 I have only tested it under MacOS as of right now, but there are plans to make sure it builds Windows and Linux as well.
