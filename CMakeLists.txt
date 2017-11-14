@@ -14,7 +14,6 @@ if (APPLE)
 endif (APPLE)
 
 # Set GLFW build variables
-message(STATUS "-- Building GLFW")
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Build GLFW examples" FORCE)
 set(GLFW_BUILD_TESTS    OFF CACHE BOOL "Build GLFW tests" FORCE)
 set(GLFW_BUILD_DOCS     OFF CACHE BOOL "Build GLFW docs" FORCE)
@@ -25,7 +24,6 @@ add_subdirectory(lib/glfw)
 include_directories(lib/glfw/include)
 
 # Set GLBinding build variables
-message(STATUS "-- Building GLBinding")
 set(BUILD_SHARED_LIBRARIES  OFF CACHE BOOL "Build GLBinding shared library" FORCE)
 set(OPTION_BUILD_TESTS      OFF CACHE BOOL "Build GLBinding tests" FORCE)
 set(OPTION_BUILD_GPU_TESTS  OFF CACHE BOOL "Build GLBinding tests that require a GPU" FORCE)
@@ -36,13 +34,21 @@ set(OPTION_BUILD_TOOLS      OFF CACHE BOOL "Build GLBinding tools" FORCE)
 add_subdirectory(lib/glbinding)
 include_directories(lib/glbinding/sources/include)
 
-message(STATUS "-- Adding files to build")
+# Set cppfs build variables
+set(BUILD_SHARED_LIBS   OFF CACHE BOOL "Build cppfs shared library" FORCE)
+set(OPTION_BUILD_TESTS  OFF CACHE BOOL "Build cppfs tests" FORCE)
+
+# Setup cppfs 
+#add_subdirectory(lib/cppfs)
+#include_directories(lib/cppfs/source/cppfs/include)
+
+
 file(GLOB SOURCE_FILES "src/*.cpp")
 add_executable(TransportConcept2D ${SOURCE_FILES})
 
 # Link GLFW
-message(STATUS "-- Linking GLFW")
-target_link_libraries(TransportConcept2D PUBLIC glfw ${GLFW_STATIC_LIBRARIES} ${EXTRA_LIBS})
+target_link_libraries(TransportConcept2D PUBLIC glfw ${EXTRA_LIBS})
 # Link GLBinding
-message(STATUS "-- Linking GLBinding")
 target_link_libraries(TransportConcept2D PUBLIC glbinding)
+# Link cppfs
+#target_link_libraries(TransportConcept2D PUBLIC cppfs)
