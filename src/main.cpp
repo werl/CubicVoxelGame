@@ -1,12 +1,16 @@
-#include <glbinding/gl41/gl.h>
 #include <glbinding/Binding.h>
+#include <glbinding/gl41/gl.h>
 
 #include <GLFW/glfw3.h>
+#include <tiny_obj_loader.h>
 
 int width = 1024;
 int height = 768;
 
 std::string windowTitle = "Transport Game Concept 2D";
+std::string grassTile = "assets/models/grass.obj";
+
+
 
 int main(void) {
     GLFWwindow* window;
@@ -36,6 +40,8 @@ int main(void) {
     glfwMakeContextCurrent(window);
 
     glbinding::Binding::initialize();
+
+
 
     // Set the clear colour
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
