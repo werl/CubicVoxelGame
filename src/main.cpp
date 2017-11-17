@@ -11,8 +11,6 @@ int height = 768;
 std::string windowTitle = "Transport Game Concept 2D";
 std::string grassTile = "assets/models/grass_flat.obj";
 
-
-
 int main(void) {
     GLFWwindow* window;
 
