@@ -4,7 +4,6 @@
 [submodule "lib/glbinding"]
 	path = lib/glbinding
 	url = git@github.com:cginternals/glbinding.git
-[submodule "lib/cppfs"]
-	path = lib/cppfs
-        url = git@github.com:cginternals/cppfs.git
-
+[submodule "lib/assimp"]
+	path = lib/assimp
+	url = git@github.com:assimp/assimp.git

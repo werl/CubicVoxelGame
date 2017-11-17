@@ -5,11 +5,10 @@ stab at writing a 2D version from just some simple libraries and see how far I g
 ## Included Libraries
 Libraries and the versions I'm using.
 * [GLBinding 2.1.3](https://github.com/cginternals/glbinding)
-* [cppfs 1.0.0](https://github.com/cginternals/cppfs)
 * [GLFW 3.2.1](http://www.glfw.org)
 * [GLM 0.9.8.5](http://glm.g-truc.net/0.9.8/index.html)
 * [stb Image 2.16](https://github.com/nothings/stb)
-* [tinyobjloader](http://syoyo.github.io/tinyobjloader/)
+* [Open Asset Import Library (assimp) 4.0.1](http://assimp.org/)
 
 ## Compiling
 I have only tested it under MacOS as of right now, but there are plans to make sure it builds Windows and Linux as well.
@@ -18,7 +17,6 @@ I have only tested it under MacOS as of right now, but there are plans to make s
 2. ```cmake .```
 3. ```make```
 
-in order for it to run you must run it form the current directory in the terminal
+In order for it to run you must run it form the current directory in the terminal
 
-## What This Accomplishes
-Honestly, I don't see much happening with this. It is just a place for me to play.
+There is a known bug that may require you to move assimp's config.h file into the standard include directory!

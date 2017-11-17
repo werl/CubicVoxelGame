@@ -7,6 +7,7 @@
 
 #include <string>
 
+// TODO replace with universal file loader
 class FileLoader {
 private:
     std::string filePath;

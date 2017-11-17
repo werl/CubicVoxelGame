@@ -34,22 +34,26 @@ set(OPTION_BUILD_TOOLS      OFF CACHE BOOL "Build GLBinding tools" FORCE)
 add_subdirectory(lib/glbinding)
 include_directories(lib/glbinding/sources/include)
 
-# Set cppfs build variables
-set(BUILD_SHARED_LIBS   OFF CACHE BOOL "Build cppfs shared library" FORCE)
-set(OPTION_BUILD_TESTS  OFF CACHE BOOL "Build cppfs tests" FORCE)
+# Set Assimp build variables
+set(BUILD_SHARED_LIBS           OFF CACHE BOOL "Build Assimp shared library" FORCE)
+set(ASSIMP_BUILD_ASSIMP_TOOLS   OFF CACHE BOOL "Build Assimp tools" FORCE)
+set(ASSIMP_BUILD_TESTS          OFF CACHE BOOL "Build Assimp tests" FORCE)
 
-# Setup cppfs
-#add_subdirectory(lib/cppfs)
-#include_directories(lib/cppfs/source/cppfs/include)
-
+# Setup Assimp
+add_subdirectory(lib/assimp)
+include_directories(lib/assimp/include)
 
 file(GLOB SOURCE_FILES "src/*.cpp")
 file(GLOB HEADRE_FILES "src/*.hpp")
 add_executable(TransportConcept2D ${HEADER_FILES} ${SOURCE_FILES})
 
+add_custom_command(TARGET TransportConcept2D POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:TransportConcept2D>/assets)
+
 # Link GLFW
 target_link_libraries(TransportConcept2D PUBLIC glfw ${EXTRA_LIBS})
 # Link GLBinding
 target_link_libraries(TransportConcept2D PUBLIC glbinding)
-# Link cppfs
-#target_link_libraries(TransportConcept2D PUBLIC cppfs)
+# Link Assimp
+target_link_libraries(TransportConcept2D PUBLIC assimp)

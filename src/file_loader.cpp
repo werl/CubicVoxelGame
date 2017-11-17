@@ -11,6 +11,7 @@ using namespace std;
 FileLoader::FileLoader(string filePath) {
     this->filePath = filePath;
 
+
     ifstream fileStream(filePath, ios::in);
     if(fileStream.is_open()) {
         string line = "";

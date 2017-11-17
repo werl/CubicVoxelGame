@@ -2,13 +2,14 @@
 #include <glbinding/gl41/gl.h>
 
 #include <GLFW/glfw3.h>
-#include <tiny_obj_loader.h>
+
+#include "mesh.hpp"
 
 int width = 1024;
 int height = 768;
 
 std::string windowTitle = "Transport Game Concept 2D";
-std::string grassTile = "assets/models/grass.obj";
+std::string grassTile = "assets/models/grass_flat.obj";
 
 
 
@@ -53,6 +54,7 @@ int main(void) {
     // Cull triangles which normal is not towards the camera
     glEnable(GL_CULL_FACE);
 
+    Mesh *mesh = new Mesh(grassTile);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
@@ -65,6 +67,8 @@ int main(void) {
         /* Poll for and process events */
         glfwPollEvents();
     }
+
+    delete mesh;
 
     glfwTerminate();
     return 0;
