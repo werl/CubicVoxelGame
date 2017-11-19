@@ -5,6 +5,7 @@
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
+#include <spdlog/spdlog.h>
 
 /**
  * Constructor loading the specified mesh
@@ -12,15 +13,16 @@
  * @param mesh - mesh to load
  */
 Mesh::MeshEntry::MeshEntry(aiMesh *mesh) {
-    vbo[VERTEX_BUFFER] = NULL;
-    vbo[TEXCOORD_BUFFER] = NULL;
-    vbo[NORMAL_BUFFER] = NULL;
-    vbo[INDEX_BUFFER] = NULL;
+    //vbo[VERTEX_BUFFER] = NULL;
+    //vbo[TEXCOORD_BUFFER] = NULL;
+    //vbo[NORMAL_BUFFER] = NULL;
+    //vbo[INDEX_BUFFER] = NULL;
 
     gl::glGenVertexArrays(1, &vao);
     gl::glBindVertexArray(vao);
 
     elementCount = mesh->mNumFaces * 3;
+    spdlog::get("console")->info("{}", elementCount);
 
     if(mesh->HasPositions()) {
         auto *vertices = new float[mesh->mNumVertices * 3];
