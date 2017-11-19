@@ -9,6 +9,7 @@ Libraries and the versions I'm using.
 * [GLM 0.9.8.5](http://glm.g-truc.net/0.9.8/index.html)
 * [stb Image 2.16](https://github.com/nothings/stb)
 * [Open Asset Import Library (assimp) 4.0.1](http://assimp.org/)
+* [spdlog](https://github.com/gabime/spdlog)
 
 ## Compiling
 I have only tested it under MacOS as of right now, but there are plans to make sure it builds Windows and Linux as well.

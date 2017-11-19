@@ -43,6 +43,10 @@ set(ASSIMP_BUILD_TESTS          OFF CACHE BOOL "Build Assimp tests" FORCE)
 add_subdirectory(lib/assimp)
 include_directories(lib/assimp/include)
 
+# Find Boost
+find_package(Boost 1.65.0 REQUIRED COMPONENTS filesystem system)
+include_directories(${Boost_INCLUDE_DIRS})
+
 file(GLOB SOURCE_FILES "src/*.cpp")
 file(GLOB HEADRE_FILES "src/*.hpp")
 add_executable(TransportConcept2D ${HEADER_FILES} ${SOURCE_FILES})
@@ -57,3 +61,5 @@ target_link_libraries(TransportConcept2D PUBLIC glfw ${EXTRA_LIBS})
 target_link_libraries(TransportConcept2D PUBLIC glbinding)
 # Link Assimp
 target_link_libraries(TransportConcept2D PUBLIC assimp)
+# Link Boost
+target_link_libraries(TransportConcept2D PUBLIC ${Boost_LIBRARIES})

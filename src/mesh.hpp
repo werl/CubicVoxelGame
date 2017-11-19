@@ -19,11 +19,9 @@ class Mesh {
 private:
     std::string filePath;
 
-
-
 public:
     struct MeshEntry {
-        static enum Buffers {
+        enum Buffers {
             VERTEX_BUFFER, TEXCOORD_BUFFER, NORMAL_BUFFER, INDEX_BUFFER
         };
 
@@ -35,7 +33,6 @@ public:
         explicit MeshEntry(aiMesh *mesh);
         ~MeshEntry();
 
-        void load(aiMesh *mesh);
         void render();
     };
 
@@ -48,6 +45,5 @@ public:
 private:
     std::vector<MeshEntry*> meshEntries;
 };
-
 
 #endif //TRANSPORTCONCEPT2D_MESH_HPP

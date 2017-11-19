@@ -14,7 +14,7 @@ FileLoader::FileLoader(string filePath) {
 
     ifstream fileStream(filePath, ios::in);
     if(fileStream.is_open()) {
-        string line = "";
+        string line;
         while (getline(fileStream, line)) {
             contents += "\n" + line;
         }
