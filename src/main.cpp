@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 
+#include "time_manager.hpp"
 #include "constants.hpp"
 #include "mesh.hpp"
 #include "program.hpp"
@@ -58,10 +59,11 @@ int main() {
     glbinding::Binding::initialize();
 
     // Hide mouse and enable unlimited movement
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     // Set mouse at the center of  the screen
     glfwPollEvents();
     glfwSetCursorPos(window, width/2, height/2);
+    glfwSwapInterval(1);
 
 
     glfwSetKeyCallback(window, keyCallback);
@@ -89,6 +91,8 @@ int main() {
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
+        transport::TimeManager::INSTANCE()->beginFrame();
+
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

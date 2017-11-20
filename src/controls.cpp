@@ -3,10 +3,12 @@
 //
 
 #include "controls.hpp"
+#include "time_manager.hpp"
 
 #include <glm/detail/type_mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <cstdio>
+#include <spdlog/spdlog.h>
 
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
@@ -31,20 +33,18 @@ float initialFoV = 45.0F;
 float speed = 3.0F; // 3 units / second
 float mouseSpeed = 0.005F;
 
-void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
-    // Called only on first run
-    static double lastTime = glfwGetTime();
+bool rotateCamera;
 
-    // Compute time difference between current and last frame
-    double currentTime = glfwGetTime();
-    auto deltaTime = float(currentTime - lastTime);
+void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
+    auto deltaTime = transport::TimeManager::INSTANCE()->getDeltaTime();
 
     // Get mouse position
-    double xpos, ypos;
-    glfwGetCursorPos(window, &xpos, &ypos);
+    double xpos = width / 2;
+    double ypos = height / 2;
+    //glfwGetCursorPos(window, &xpos, &ypos);
 
     // Reset mouse positioon for next frame
-    glfwSetCursorPos(window, width / 2, height / 2);
+    //glfwSetCursorPos(window, width / 2, height / 2);
 
     // Compute new orientation
     horizontalAngle += mouseSpeed * float(width / 2 - xpos);
@@ -69,19 +69,19 @@ void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
 
     // Move forward
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-        position += direction * deltaTime * speed;
+        position += direction * float(deltaTime) * speed;
     }
     // Move backward
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-        position -= direction * deltaTime * speed;
+        position -= direction * float(deltaTime) * speed;
     }
     // Strafe right
     if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        position += right * deltaTime * speed;
+        position += right * float(deltaTime) * speed;
     }
     // Strafe left
     if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-        position -= right * deltaTime * speed;
+        position -= right * float(deltaTime) * speed;
     }
 
     float FoV = initialFoV;
@@ -94,18 +94,21 @@ void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
             position + direction,
             up
     );
-
-    lastTime = currentTime;
 }
 
 void keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods) {
-    const char* keyName = glfwGetKeyName(key, scanCode);
-    printf("%s \n", keyName);
-    printf("%i %i \n", key, scanCode);
+
 }
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
-    printf("%i %i \n", button, action);
+    if(button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_PRESS) {
+        rotateCamera = true;
+        spdlog::get("console")->info("tilt true");
+    }
+    if(button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_RELEASE) {
+        rotateCamera = false;
+        spdlog::get("console")->info("tilt false");
+    }
 }
 
 void scrollCallback(GLFWwindow *window, double xoffset, double yoffset) {
