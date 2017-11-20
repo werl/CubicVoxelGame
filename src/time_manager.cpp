@@ -17,7 +17,7 @@ transport::TimeManager::TimeManager() {
 }
 
 transport::TimeManager* transport::TimeManager::INSTANCE() {
-    static TimeManager *timeManager = new TimeManager;
+    static auto *timeManager = new TimeManager;
     return timeManager;
 }
 

@@ -5,8 +5,6 @@
 #ifndef TRANSPORTCONCEPT2D_TIME_MANAGER_HPP
 #define TRANSPORTCONCEPT2D_TIME_MANAGER_HPP
 
-#include <memory>
-
 namespace transport {
     class TimeManager {
     private:
@@ -16,11 +14,6 @@ namespace transport {
         TimeManager(TimeManager const&) = delete;
         TimeManager& operator=(TimeManager const&) = delete;
 
-        static std::shared_ptr<TimeManager> instance()
-        {
-            static std::shared_ptr<TimeManager> s{new TimeManager};
-            return s;
-        }
         static TimeManager* INSTANCE();
         double getDeltaTime();
         void beginFrame();
