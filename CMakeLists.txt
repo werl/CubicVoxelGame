@@ -43,6 +43,9 @@ set(ASSIMP_BUILD_TESTS          OFF CACHE BOOL "Build Assimp tests" FORCE)
 add_subdirectory(lib/assimp)
 include_directories(lib/assimp/include)
 
+# Set Boost variables
+set(Boost_USE_STATIC_LIBS ON CACHE BOOL "use boost static libraries"  FORCE)
+
 # Find Boost
 find_package(Boost 1.65.0 REQUIRED COMPONENTS filesystem system)
 include_directories(${Boost_INCLUDE_DIRS})
