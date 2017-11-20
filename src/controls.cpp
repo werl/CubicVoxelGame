@@ -6,7 +6,7 @@
 
 #include <glm/detail/type_mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <stdio.h>
+#include <cstdio>
 
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
