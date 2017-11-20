@@ -12,17 +12,11 @@
  *
  * @param mesh - mesh to load
  */
-Mesh::MeshEntry::MeshEntry(aiMesh *mesh) {
-    //vbo[VERTEX_BUFFER] = NULL;
-    //vbo[TEXCOORD_BUFFER] = NULL;
-    //vbo[NORMAL_BUFFER] = NULL;
-    //vbo[INDEX_BUFFER] = NULL;
-
+Mesh::MeshEntry::MeshEntry(aiMesh *mesh, aiMaterial *material, gl::GLuint program) {
     gl::glGenVertexArrays(1, &vao);
     gl::glBindVertexArray(vao);
 
     elementCount = mesh->mNumFaces * 3;
-    spdlog::get("console")->info("{}", elementCount);
 
     if(mesh->HasPositions()) {
         auto *vertices = new float[mesh->mNumVertices * 3];
@@ -95,6 +89,18 @@ Mesh::MeshEntry::MeshEntry(aiMesh *mesh) {
 
     gl::glBindBuffer(gl::GL_ARRAY_BUFFER, 0);
     gl::glBindVertexArray(0);
+
+    aiColor3D color(1, 0.4, 0);
+
+    if(AI_SUCCESS != material->Get(AI_MATKEY_COLOR_DIFFUSE, color)) {
+        spdlog::get("console")->error("Material not found");
+    }
+    red = color.r;
+    green = color.g;
+    blue = color.b;
+    this->program = program;
+
+
 }
 
 Mesh::MeshEntry::~MeshEntry() {
@@ -114,8 +120,11 @@ Mesh::MeshEntry::~MeshEntry() {
  * Render a single Mesh Entry
  */
 void Mesh::MeshEntry::render() {
+    gl::GLint color = gl::glGetUniformLocation(program, "fragColor");
+    gl::glUniform3f(color, red, green, blue);
+
     gl::glBindVertexArray(vao);
-    gl::glDrawElements(gl::GL_TRIANGLES, elementCount, gl::GL_UNSIGNED_INT, NULL);
+    gl::glDrawElements(gl::GL_TRIANGLES, elementCount, gl::GL_UNSIGNED_INT, nullptr);
     gl::glBindVertexArray(0);
 }
 
@@ -124,7 +133,7 @@ void Mesh::MeshEntry::render() {
  *
  * @param filePath - path to the file to load
  */
-Mesh::Mesh(std::string filePath) {
+Mesh::Mesh(std::string filePath, gl::GLuint program) {
     this->filePath = filePath;
 
     Assimp::Importer importer;
@@ -135,7 +144,7 @@ Mesh::Mesh(std::string filePath) {
     }
 
     for(int i = 0; i < scene->mNumMeshes; i++) {
-        meshEntries.push_back(new MeshEntry(scene->mMeshes[i]));
+        meshEntries.push_back(new MeshEntry(scene->mMeshes[i], scene->mMaterials[scene->mMeshes[i]->mMaterialIndex], program));
     }
 }
 

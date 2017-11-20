@@ -15,6 +15,8 @@
 #include <assimp/scene.h>
 #include <assimp/mesh.h>
 
+#include "program.hpp"
+
 class Mesh {
 private:
     std::string filePath;
@@ -27,16 +29,20 @@ public:
 
         gl::GLuint vao;
         gl::GLuint vbo[4];
+        gl::GLuint program;
+        float red;
+        float green;
+        float blue;
 
         unsigned int elementCount;
 
-        explicit MeshEntry(aiMesh *mesh);
+        MeshEntry(aiMesh *mesh, aiMaterial *material, gl::GLuint program);
         ~MeshEntry();
 
         void render();
     };
 
-    explicit Mesh(std::string filePath);
+    Mesh(std::string filePath, gl::GLuint program);
 
     void render();
 

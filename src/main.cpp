@@ -19,7 +19,7 @@ int width = 1024;
 int height = 768;
 
 std::string windowTitle = "Transport Game Concept 2D";
-std::string grassTile = "assets/models/grass_flat.obj";
+std::string grassTile = "assets/models/road_turn.obj";
 
 int main() {
     constants::RUN_GL_TESTS = true;
@@ -83,12 +83,11 @@ int main() {
         return 2;
     }
 
-    Mesh *mesh = new Mesh(grassTile);
+    Mesh *mesh = new Mesh(grassTile, program->getProgramID());
 
     gl::GLint MatrixID = gl::glGetUniformLocation(program->getProgramID(), "MVP");
 
     /* Loop until the user closes the window */
-    console->info("Starting loop\n");
     while (!glfwWindowShouldClose(window) && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
