@@ -8,7 +8,6 @@
 #include <glm/detail/type_mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <cstdio>
-#include <spdlog/spdlog.h>
 
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
@@ -22,7 +21,7 @@ glm::mat4 getProjectionMatrix() {
 }
 
 // Initialize position : on +Z
-glm::vec3 position = glm::vec3(0, 0, 5);
+glm::vec3 position = glm::vec3(0, 5, 5);
 // Initial horizontal angle : toward -z
 float horizontalAngle = 3.14F;
 // initial vertical angle : none
@@ -30,25 +29,41 @@ float verticalAngle = 0.0F;
 // Initial FoV
 float initialFoV = 45.0F;
 
+float minYAngle = float(glm::radians(-90.0));
+float maxYAngle = 0;
+
 float speed = 3.0F; // 3 units / second
-float mouseSpeed = 0.005F;
+float mouseSpeed = 0.0005F;
 
 bool rotateCamera;
+bool cameraFirstFrame;
+double mouseStartX;
+double mouseStartY;
 
 void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
     auto deltaTime = transport::TimeManager::INSTANCE()->getDeltaTime();
 
-    // Get mouse position
-    double xpos = width / 2;
-    double ypos = height / 2;
-    //glfwGetCursorPos(window, &xpos, &ypos);
+    if(rotateCamera) {
+        if(cameraFirstFrame) {
+            cameraFirstFrame = false;
 
-    // Reset mouse positioon for next frame
-    //glfwSetCursorPos(window, width / 2, height / 2);
+            glfwGetCursorPos(window, &mouseStartX, &mouseStartY);
+        }
+        // Get mouse position
+        double xpos, ypos;
+        glfwGetCursorPos(window, &xpos, &ypos);
 
-    // Compute new orientation
-    horizontalAngle += mouseSpeed * float(width / 2 - xpos);
-    verticalAngle   += mouseSpeed * float(height / 2 - ypos);
+        // Compute new orientation
+        horizontalAngle += mouseSpeed * float(mouseStartX - xpos);
+        verticalAngle += mouseSpeed * float(mouseStartY - ypos);
+
+        if(verticalAngle < minYAngle){
+            verticalAngle = minYAngle;
+        }
+        if(verticalAngle > maxYAngle) {
+            verticalAngle = maxYAngle;
+        }
+    }
 
     // Direction : Spherical coordinates to Cartesian coordinates conversion
     glm::vec3 direction(
@@ -103,11 +118,10 @@ void keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     if(button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_PRESS) {
         rotateCamera = true;
-        spdlog::get("console")->info("tilt true");
+        cameraFirstFrame = true;
     }
     if(button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_RELEASE) {
         rotateCamera = false;
-        spdlog::get("console")->info("tilt false");
     }
 }
 
