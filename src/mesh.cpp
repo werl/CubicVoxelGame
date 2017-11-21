@@ -119,9 +119,13 @@ Mesh::MeshEntry::~MeshEntry() {
 /**
  * Render a single Mesh Entry
  */
-void Mesh::MeshEntry::render() {
+void Mesh::MeshEntry::render(glm::vec3 position) {
     gl::GLint color = gl::glGetUniformLocation(program, "fragColor");
     gl::glUniform3f(color, red, green, blue);
+
+    gl::GLint pos = gl::glGetUniformLocation(program, "position");
+    position *= 3;
+    gl::glUniform3f(pos, position.x, position.y, position.z);
 
     gl::glBindVertexArray(vao);
     gl::glDrawElements(gl::GL_TRIANGLES, elementCount, gl::GL_UNSIGNED_INT, nullptr);
@@ -133,8 +137,8 @@ void Mesh::MeshEntry::render() {
  *
  * @param filePath - path to the file to load
  */
-Mesh::Mesh(std::string filePath, gl::GLuint program) {
-    this->filePath = filePath;
+Mesh::Mesh(std::string filePath, gl::GLuint program, glm::vec3 position) {
+    this->position = position;
 
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(filePath.c_str(), aiProcessPreset_TargetRealtime_Fast);
@@ -161,6 +165,6 @@ Mesh::~Mesh() {
  */
 void Mesh::render() {
     for(int i = 0; i < meshEntries.size(); i++) {
-        meshEntries.at(i)->render();
+        meshEntries.at(i)->render(position);
     }
 }
