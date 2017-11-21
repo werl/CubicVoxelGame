@@ -15,12 +15,7 @@
 #include <assimp/scene.h>
 #include <assimp/mesh.h>
 
-#include "program.hpp"
-
 class Mesh {
-private:
-    std::string filePath;
-
 public:
     struct MeshEntry {
         enum Buffers {
@@ -39,10 +34,13 @@ public:
         MeshEntry(aiMesh *mesh, aiMaterial *material, gl::GLuint program);
         ~MeshEntry();
 
-        void render();
+        void render(glm::vec3 position);
     };
 
-    Mesh(std::string filePath, gl::GLuint program);
+private:
+    glm::vec3 position;
+public:
+    Mesh(std::string filePath, gl::GLuint program, glm::vec3 position);
 
     void render();
 

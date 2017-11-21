@@ -58,8 +58,6 @@ int main() {
 
     glbinding::Binding::initialize();
 
-    // Hide mouse and enable unlimited movement
-    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     // Set mouse at the center of  the screen
     glfwPollEvents();
     glfwSetCursorPos(window, width/2, height/2);
@@ -85,7 +83,9 @@ int main() {
         return 2;
     }
 
-    Mesh *mesh = new Mesh(grassTile, program->getProgramID());
+    Mesh *mesh = new Mesh(grassTile, program->getProgramID(), glm::vec3(0, 0, 0));
+    Mesh *mesh2 = new Mesh(grassTile, program->getProgramID(), glm::vec3(1, 0, 0));
+    Mesh *mesh3 = new Mesh(grassTile, program->getProgramID(), glm::vec3(0, 0, 1));
 
     gl::GLint MatrixID = gl::glGetUniformLocation(program->getProgramID(), "MVP");
 
@@ -107,6 +107,8 @@ int main() {
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &mvp[0][0]);
 
         mesh->render();
+        mesh2->render();
+        mesh3->render();
         program->detachProgram();
 
         /* Swap front and back buffers */
@@ -117,6 +119,8 @@ int main() {
     }
 
     delete mesh;
+    delete mesh2;
+    delete mesh3;
     delete program;
 
     glfwTerminate();
