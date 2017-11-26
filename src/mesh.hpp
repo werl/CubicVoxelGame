@@ -31,23 +31,22 @@ public:
 
         unsigned int elementCount;
 
-        MeshEntry(aiMesh *mesh, aiMaterial *material, gl::GLuint program);
+        MeshEntry(aiMesh *mesh, aiMaterial *material);
+        MeshEntry(const MeshEntry &obj);
         ~MeshEntry();
 
-        void render(glm::vec3 position);
+        void render(glm::vec3 *position, gl::GLuint program);
     };
 
 private:
-    glm::vec3 position;
+    std::vector<MeshEntry*> meshEntries;
 public:
-    Mesh(std::string filePath, gl::GLuint program, glm::vec3 position);
-
-    void render();
-
+    explicit Mesh(std::string filePath);
+    Mesh(const Mesh &obj);
     ~Mesh();
 
-private:
-    std::vector<MeshEntry*> meshEntries;
+    void render(glm::vec3 *pos, gl::GLuint program);
+
 };
 
 #endif //TRANSPORTCONCEPT2D_MESH_HPP
