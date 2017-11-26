@@ -12,7 +12,7 @@
  *
  * @param mesh - mesh to load
  */
-Mesh::MeshEntry::MeshEntry(aiMesh *mesh, aiMaterial *material, gl::GLuint program) {
+Mesh::MeshEntry::MeshEntry(aiMesh *mesh, aiMaterial *material) {
     gl::glGenVertexArrays(1, &vao);
     gl::glBindVertexArray(vao);
 
@@ -98,9 +98,14 @@ Mesh::MeshEntry::MeshEntry(aiMesh *mesh, aiMaterial *material, gl::GLuint progra
     red = color.r;
     green = color.g;
     blue = color.b;
-    this->program = program;
 
 
+}
+
+Mesh::MeshEntry::MeshEntry(const MeshEntry &obj) {
+    red = obj.red;
+    blue = obj.blue;
+    green = obj.green;
 }
 
 Mesh::MeshEntry::~MeshEntry() {
@@ -119,14 +124,13 @@ Mesh::MeshEntry::~MeshEntry() {
 /**
  * Render a single Mesh Entry
  */
-void Mesh::MeshEntry::render(glm::vec3 position) {
+void Mesh::MeshEntry::render(glm::vec3* position, gl::GLuint program) {
     gl::GLint color = gl::glGetUniformLocation(program, "fragColor");
     gl::glUniform3f(color, red, green, blue);
 
     gl::GLint pos = gl::glGetUniformLocation(program, "position");
-    position *= 3;
-    gl::glUniform3f(pos, position.x, position.y, position.z);
 
+    gl::glUniform3f(pos, position->x * 3, position->y * 3, position->z * 3);
     gl::glBindVertexArray(vao);
     gl::glDrawElements(gl::GL_TRIANGLES, elementCount, gl::GL_UNSIGNED_INT, nullptr);
     gl::glBindVertexArray(0);
@@ -137,19 +141,22 @@ void Mesh::MeshEntry::render(glm::vec3 position) {
  *
  * @param filePath - path to the file to load
  */
-Mesh::Mesh(std::string filePath, gl::GLuint program, glm::vec3 position) {
-    this->position = position;
-
+Mesh::Mesh(std::string filePath) {
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(filePath.c_str(), aiProcessPreset_TargetRealtime_Fast);
 
     if(!scene) {
         fprintf(stderr, "unable to load mesh %s\n", importer.GetErrorString());
+        return;
     }
 
     for(int i = 0; i < scene->mNumMeshes; i++) {
-        meshEntries.push_back(new MeshEntry(scene->mMeshes[i], scene->mMaterials[scene->mMeshes[i]->mMaterialIndex], program));
+        meshEntries.push_back(new MeshEntry(scene->mMeshes[i], scene->mMaterials[scene->mMeshes[i]->mMaterialIndex]));
     }
+}
+
+Mesh::Mesh(const Mesh &obj) {
+    meshEntries = obj.meshEntries;
 }
 
 Mesh::~Mesh() {
@@ -163,8 +170,8 @@ Mesh::~Mesh() {
 /**
  * render the whole mesh
  */
-void Mesh::render() {
+void Mesh::render(glm::vec3 *pos, gl::GLuint program) {
     for(int i = 0; i < meshEntries.size(); i++) {
-        meshEntries.at(i)->render(position);
+        meshEntries.at(i)->render(pos, program);
     }
 }

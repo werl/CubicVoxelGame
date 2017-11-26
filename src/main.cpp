@@ -12,6 +12,10 @@
 #include "mesh.hpp"
 #include "program.hpp"
 #include "controls.hpp"
+#include "tile_base.hpp"
+#include "tile_grass.hpp"
+#include "registry.hpp"
+#include "world.hpp"
 
 namespace spd = spdlog;
 using namespace gl;
@@ -31,12 +35,12 @@ int main() {
 
     /* Initialize the library */
     if (!glfwInit()) {
-        console->error("GLFW didn't initialize\n");
+        console->error("GLFW didn't initialize");
         return -1;
     }
 
     /* Create a windowed mode window and its OpenGL context */
-    glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_SAMPLES, 1);
     // OpenGL major version
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     // OpenGL minor version
@@ -49,7 +53,7 @@ int main() {
     window = glfwCreateWindow(width, height, windowTitle.c_str(), nullptr, nullptr);
     if (!window) {
         glfwTerminate();
-        console->error("GLFW window couldn't be created/n");
+        console->error("GLFW window couldn't be created");
         return -1;
     }
 
@@ -61,7 +65,7 @@ int main() {
     // Set mouse at the center of  the screen
     glfwPollEvents();
     glfwSetCursorPos(window, width/2, height/2);
-    glfwSwapInterval(1);
+    //glfwSwapInterval(1);
 
 
     glfwSetKeyCallback(window, keyCallback);
@@ -83,9 +87,12 @@ int main() {
         return 2;
     }
 
-    Mesh *mesh = new Mesh(grassTile, program->getProgramID(), glm::vec3(0, 0, 0));
-    Mesh *mesh2 = new Mesh(grassTile, program->getProgramID(), glm::vec3(1, 0, 0));
-    Mesh *mesh3 = new Mesh(grassTile, program->getProgramID(), glm::vec3(0, 0, 1));
+    Mesh *mesh = new Mesh(grassTile);
+    //mesh->setProgram(program->getProgramID());
+    auto *tile = new tile::TileGrass();
+
+    registerTileAndMesh(*tile, *mesh, "grass");
+    world::World world1(10, 10);
 
     gl::GLint MatrixID = gl::glGetUniformLocation(program->getProgramID(), "MVP");
 
@@ -106,9 +113,19 @@ int main() {
 
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &mvp[0][0]);
 
-        mesh->render();
-        mesh2->render();
-        mesh3->render();
+        glm::vec3 vec3(0,0,0);
+        glm::vec3 vec31(1,0,0);
+        glm::vec3 vec32(0,0,1);
+
+        //mesh->setProgram(program->getProgramID());
+        //mesh->render(&vec3, program->getProgramID());
+
+        //mesh::MeshManager::getMesh("grass")->render(&vec31, program->getProgramID());
+        //mesh::MeshManager::getMesh("grass")->render(&vec3, program->getProgramID());
+        //mesh::MeshManager::getMesh("grass")->render(&vec32, program->getProgramID());
+
+        world1.render(program);
+
         program->detachProgram();
 
         /* Swap front and back buffers */
@@ -118,9 +135,6 @@ int main() {
         glfwPollEvents();
     }
 
-    delete mesh;
-    delete mesh2;
-    delete mesh3;
     delete program;
 
     glfwTerminate();

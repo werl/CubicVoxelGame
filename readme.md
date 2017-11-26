@@ -10,6 +10,7 @@ Libraries and the versions I'm using.
 * [stb Image 2.16](https://github.com/nothings/stb)
 * [Open Asset Import Library (assimp) 4.0.1](http://assimp.org/)
 * [spdlog 0.14.0](https://github.com/gabime/spdlog)
+* [boost 1.65.1](http://www.boost.org/) - Filesystem, System, Container 
 
 ## Compiling
 I have only tested it under MacOS as of right now, but there are plans to make sure it builds Windows and Linux as well.
