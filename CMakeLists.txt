@@ -47,7 +47,7 @@ include_directories(lib/assimp/include)
 set(Boost_USE_STATIC_LIBS ON CACHE BOOL "use boost static libraries"  FORCE)
 
 # Find Boost
-find_package(Boost 1.65.0 REQUIRED COMPONENTS filesystem system)
+find_package(Boost 1.65.0 REQUIRED COMPONENTS filesystem system container)
 include_directories(${Boost_INCLUDE_DIRS})
 
 file(GLOB SOURCE_FILES "src/*.cpp")
