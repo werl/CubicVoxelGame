@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(TransportConcept2D)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 include_directories(include)
 
@@ -13,41 +14,26 @@ if (APPLE)
     set(EXTRA_LIBS ${COCOA} ${OPENGL} ${IOKIT} ${COREVIDEO})
 endif (APPLE)
 
-# Set GLFW build variables
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Build GLFW examples" FORCE)
-set(GLFW_BUILD_TESTS    OFF CACHE BOOL "Build GLFW tests" FORCE)
-set(GLFW_BUILD_DOCS     OFF CACHE BOOL "Build GLFW docs" FORCE)
-set(GLFW_INSTALL        OFF CACHE BOOL "Generate GLFW instilation target" FORCE)
+# Find PkgConfig
+find_package(PkgConfig REQUIRED)
 
-# Setup GLFW
-add_subdirectory(lib/glfw)
-include_directories(lib/glfw/include)
+# Find GLFW
+pkg_search_module(GLFW REQUIRED glfw3)
+include_directories(${GLFW_INCLUDE_DIRS})
+message(STATUS ${GLFW_INCLUDE_DIRS})
 
-# Set GLBinding build variables
-set(BUILD_SHARED_LIBRARIES  OFF CACHE BOOL "Build GLBinding shared library" FORCE)
-set(OPTION_BUILD_TESTS      OFF CACHE BOOL "Build GLBinding tests" FORCE)
-set(OPTION_BUILD_GPU_TESTS  OFF CACHE BOOL "Build GLBinding tests that require a GPU" FORCE)
-set(OPTION_BUILD_DOCS       OFF CACHE BOOL "Build GLBinding docs" FORCE)
-set(OPTION_BUILD_TOOLS      OFF CACHE BOOL "Build GLBinding tools" FORCE)
+# Find GLBinding
+find_package(glbinding REQUIRED)
+include_directories(${glbinding_INCLUDE_DIRS})
+message(STATUS ${glbinding_INCLUDE_DIRS})
 
-# Setup GLBinding
-add_subdirectory(lib/glbinding)
-include_directories(lib/glbinding/sources/include)
-
-# Set Assimp build variables
-set(BUILD_SHARED_LIBS           OFF CACHE BOOL "Build Assimp shared library" FORCE)
-set(ASSIMP_BUILD_ASSIMP_TOOLS   OFF CACHE BOOL "Build Assimp tools" FORCE)
-set(ASSIMP_BUILD_TESTS          OFF CACHE BOOL "Build Assimp tests" FORCE)
-
-# Setup Assimp
-add_subdirectory(lib/assimp)
-include_directories(lib/assimp/include)
-
-# Set Boost variables
-set(Boost_USE_STATIC_LIBS ON CACHE BOOL "use boost static libraries"  FORCE)
+# Find Assimp
+pkg_search_module(assimp REQUIRED assimp)
+include_directories(${assimp_INCLUDE_DIRS})
+message(STATUS ${assimp_INCLUDE_DIRS})
 
 # Find Boost
-find_package(Boost 1.65.0 REQUIRED COMPONENTS filesystem system container)
+find_package(Boost 1.66.0 REQUIRED COMPONENTS filesystem system container)
 include_directories(${Boost_INCLUDE_DIRS})
 
 file(GLOB SOURCE_FILES "src/*.cpp")
@@ -58,11 +44,12 @@ add_custom_command(TARGET TransportConcept2D POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:TransportConcept2D>/assets)
 
-# Link GLFW
-target_link_libraries(TransportConcept2D PUBLIC glfw ${EXTRA_LIBS})
 # Link GLBinding
-target_link_libraries(TransportConcept2D PUBLIC glbinding)
+target_link_libraries(TransportConcept2D PUBLIC glbinding::glbinding)
+# Link GLFW
+target_link_libraries(TransportConcept2D PUBLIC ${GLFW_STATIC_LIBRARIES} ${EXTRA_LIBS})
+message(STATUS ${GLFW_LIBRARIES})
 # Link Assimp
-target_link_libraries(TransportConcept2D PUBLIC assimp)
+target_link_libraries(TransportConcept2D PUBLIC ${assimp_LIBRARIES})
 # Link Boost
 target_link_libraries(TransportConcept2D PUBLIC ${Boost_LIBRARIES})
