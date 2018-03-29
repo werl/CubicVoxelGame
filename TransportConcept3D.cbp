@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="TransportConcept3D"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\..\..\usr\local\share\glbinding\;CMake Files\..\..\..\..\..\..\usr\local\share\glbinding\cmake\;CMake Files\..\..\..\..\..\..\usr\local\share\glbinding\cmake\glbinding\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/peter/Documents/Dev/cpp/TransportGameConcept3D"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/peter/Documents/Dev/cpp/TransportGameConcept3D"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/peter/Documents/Dev/cpp/TransportGameConcept3D"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TransportConcept3D">
+				<Option output="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/TransportConcept3D" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/peter/Documents/Dev/cpp/TransportGameConcept3D"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSYSTEM_LINUX"/>
+					<Add directory="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 TransportConcept3D"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TransportConcept3D/fast">
+				<Option output="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/TransportConcept3D" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/peter/Documents/Dev/cpp/TransportGameConcept3D"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSYSTEM_LINUX"/>
+					<Add directory="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 TransportConcept3D/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/peter/Documents/Dev/cpp/TransportGameConcept3D/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/controls.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/controls.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/file_loader.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/file_loader.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/main.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/mesh.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/mesh.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/mesh_manager.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/mesh_manager.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/program.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/program.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/registry.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/registry.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/tile_base.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/tile_base.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/tile_grass.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/tile_grass.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/time_manager.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/time_manager.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/world.cpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/src/world.hpp">
+			<Option target="TransportConcept3D"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/../../../../../../usr/local/share/glbinding/glbinding-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\share\glbinding\"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/../../../../../../usr/local/share/glbinding/cmake/glbinding/glbinding-export-noconfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\share\glbinding\cmake\glbinding\"/>
+		</Unit>
+		<Unit filename="/home/peter/Documents/Dev/cpp/TransportGameConcept3D/../../../../../../usr/local/share/glbinding/cmake/glbinding/glbinding-export.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\share\glbinding\cmake\glbinding\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
