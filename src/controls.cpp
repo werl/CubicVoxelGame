@@ -36,34 +36,11 @@ float speed = 3.0F; // 3 units / second
 float mouseSpeed = 0.0005F;
 
 bool rotateCamera;
-bool cameraFirstFrame;
 double mouseStartX;
 double mouseStartY;
 
 void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
     auto deltaTime = transport::TimeManager::INSTANCE()->getDeltaTime();
-
-    if(rotateCamera) {
-        if(cameraFirstFrame) {
-            cameraFirstFrame = false;
-
-            glfwGetCursorPos(window, &mouseStartX, &mouseStartY);
-        }
-        // Get mouse position
-        double xpos, ypos;
-        glfwGetCursorPos(window, &xpos, &ypos);
-
-        // Compute new orientation
-        horizontalAngle += mouseSpeed * float(mouseStartX - xpos);
-        verticalAngle += mouseSpeed * float(mouseStartY - ypos);
-
-        if(verticalAngle < minYAngle){
-            verticalAngle = minYAngle;
-        }
-        if(verticalAngle > maxYAngle) {
-            verticalAngle = maxYAngle;
-        }
-    }
 
     // Direction : Spherical coordinates to Cartesian coordinates conversion
     glm::vec3 direction(
@@ -118,13 +95,31 @@ void keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     if(button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_PRESS) {
         rotateCamera = true;
-        cameraFirstFrame = true;
+        glfwGetCursorPos(window, &mouseStartX, &mouseStartY);
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     }
     if(button == GLFW_MOUSE_BUTTON_MIDDLE && action == GLFW_RELEASE) {
         rotateCamera = false;
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
 }
 
 void scrollCallback(GLFWwindow *window, double xoffset, double yoffset) {
     printf("%f %f \n", xoffset, yoffset);
+}
+
+void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
+    if(rotateCamera) {
+        // Compute new orientation
+        horizontalAngle += mouseSpeed * float(mouseStartX - xpos);
+        verticalAngle += mouseSpeed * float(mouseStartY - ypos);
+
+        if(verticalAngle < minYAngle){
+            verticalAngle = minYAngle;
+        }
+        if(verticalAngle > maxYAngle) {
+            verticalAngle = maxYAngle;
+        }
+        glfwSetCursorPos(window, mouseStartX, mouseStartY);
+    }
 }

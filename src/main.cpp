@@ -72,6 +72,7 @@ int main() {
     glfwSetKeyCallback(window, keyCallback);
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
     glfwSetScrollCallback(window, scrollCallback);
+    glfwSetCursorPosCallback(window, cursorPositionCallback);
     // Set the clear colour
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 

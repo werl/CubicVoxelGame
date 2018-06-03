@@ -15,5 +15,6 @@ glm::mat4 getProjectionMatrix();
 void keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
 
 #endif //TRANSPORTCONCEPT2D_CONTROLS_HPP
