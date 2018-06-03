@@ -4,6 +4,7 @@
 #include "mesh.hpp"
 
 #include <assimp/Importer.hpp>
+#include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <spdlog/spdlog.h>
 
@@ -143,7 +144,7 @@ void Mesh::MeshEntry::render(glm::vec3* position, gl::GLuint program) {
  */
 Mesh::Mesh(std::string filePath) {
     Assimp::Importer importer;
-    const aiScene *scene = importer.ReadFile(filePath.c_str(), aiProcessPreset_TargetRealtime_Fast);
+    const aiScene *scene = importer.ReadFile(filePath, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
     if(!scene) {
         fprintf(stderr, "unable to load mesh %s\n", importer.GetErrorString());

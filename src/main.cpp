@@ -1,6 +1,7 @@
 #include <glbinding/gl41/gl.h>
 #include <glbinding/Binding.h>
 
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <spdlog/spdlog.h>
 
@@ -46,7 +47,7 @@ int main() {
     // OpenGL minor version
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     // Enable OpenGL forward compatibility. Required on Mac
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, true);
     // Set the OpenGL profile to the core profile
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -72,7 +73,7 @@ int main() {
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
     glfwSetScrollCallback(window, scrollCallback);
     // Set the clear colour
-    gl::glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
     // Enable depth test
     glEnable(GL_DEPTH_TEST);
@@ -94,7 +95,7 @@ int main() {
     registerTileAndMesh(*tile, *mesh, "grass");
     world::World world1(10, 10);
 
-    gl::GLint MatrixID = gl::glGetUniformLocation(program->getProgramID(), "MVP");
+    GLint MatrixID = glGetUniformLocation(program->getProgramID(), "MVP");
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
@@ -111,18 +112,7 @@ int main() {
         glm::mat4 ModelMatrix = glm::mat4(1.0);
         glm::mat4 mvp = ProjectionMatrix * ViewMatrix * ModelMatrix;
 
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &mvp[0][0]);
-
-        glm::vec3 vec3(0,0,0);
-        glm::vec3 vec31(1,0,0);
-        glm::vec3 vec32(0,0,1);
-
-        //mesh->setProgram(program->getProgramID());
-        //mesh->render(&vec3, program->getProgramID());
-
-        //mesh::MeshManager::getMesh("grass")->render(&vec31, program->getProgramID());
-        //mesh::MeshManager::getMesh("grass")->render(&vec3, program->getProgramID());
-        //mesh::MeshManager::getMesh("grass")->render(&vec32, program->getProgramID());
+        gl::glUniformMatrix4fv(MatrixID, 1, gl::GL_FALSE, &mvp[0][0]);
 
         world1.render(program);
 

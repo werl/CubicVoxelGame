@@ -24,14 +24,13 @@ include_directories(${GLFW_INCLUDE_DIRS})
 # Find GLBinding
 find_package(glbinding REQUIRED)
 include_directories(${glbinding_INCLUDE_DIRS})
-message(STATUS ${glbinding_INCLUDE_DIRS})
 
 # Find Assimp
-pkg_search_module(assimp REQUIRED assimp)
-include_directories(${assimp_INCLUDE_DIRS})
+find_package(ASSIMP 4.1 REQUIRED)
+include_directories(${ASSIMP_INCLUDE_DIRS})
 
 # Find Boost
-find_package(Boost 1.66.0 REQUIRED COMPONENTS filesystem system container)
+find_package(Boost 1.66 REQUIRED COMPONENTS filesystem system container)
 include_directories(${Boost_INCLUDE_DIRS})
 
 file(GLOB SOURCE_FILES "src/*.cpp")
@@ -47,6 +46,6 @@ target_link_libraries(TransportConcept3D PUBLIC glbinding::glbinding)
 # Link GLFW
 target_link_libraries(TransportConcept3D PUBLIC ${GLFW_STATIC_LIBRARIES} ${EXTRA_LIBS})
 # Link Assimp
-target_link_libraries(TransportConcept3D PUBLIC ${assimp_LIBRARIES})
+target_link_libraries(TransportConcept3D PUBLIC ${ASSIMP_LIBRARIES})
 # Link Boost
 target_link_libraries(TransportConcept3D PUBLIC ${Boost_LIBRARIES})
