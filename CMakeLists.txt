@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(TransportConcept3D)
+project(CubicVoxelGame)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
@@ -35,17 +35,17 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 file(GLOB SOURCE_FILES "src/*.cpp")
 file(GLOB HEADRE_FILES "src/*.hpp")
-add_executable(TransportConcept3D ${HEADER_FILES} ${SOURCE_FILES})
+add_executable(CubicVoxelGame ${HEADER_FILES} ${SOURCE_FILES})
 
-add_custom_command(TARGET TransportConcept3D POST_BUILD
+add_custom_command(TARGET CubicVoxelGame POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-        ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:TransportConcept3D>/assets)
+        ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:CubicVoxelGame>/assets)
 
 # Link GLBinding
-target_link_libraries(TransportConcept3D PUBLIC glbinding::glbinding)
+target_link_libraries(CubicVoxelGame PUBLIC glbinding::glbinding)
 # Link GLFW
-target_link_libraries(TransportConcept3D PUBLIC ${GLFW_STATIC_LIBRARIES} ${EXTRA_LIBS})
+target_link_libraries(CubicVoxelGame PUBLIC ${GLFW_STATIC_LIBRARIES} ${EXTRA_LIBS})
 # Link Assimp
-target_link_libraries(TransportConcept3D PUBLIC ${ASSIMP_LIBRARIES})
+target_link_libraries(CubicVoxelGame PUBLIC ${ASSIMP_LIBRARIES})
 # Link Boost
-target_link_libraries(TransportConcept3D PUBLIC ${Boost_LIBRARIES})
+target_link_libraries(CubicVoxelGame PUBLIC ${Boost_LIBRARIES})

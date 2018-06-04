@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-14.
 //
 
-#ifndef TRANSPORTCONCEPT2D_MESH_HPP
-#define TRANSPORTCONCEPT2D_MESH_HPP
+#ifndef CUBICVOXELGAME_MESH_HPP
+#define CUBICVOXELGAME_MESH_HPP
 
 #include <string>
 #include <vector>
@@ -49,4 +49,4 @@ public:
 
 };
 
-#endif //TRANSPORTCONCEPT2D_MESH_HPP
+#endif //CUBICVOXELGAME_MESH_HPP

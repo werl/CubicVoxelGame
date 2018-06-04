@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-20.
 //
 
-#ifndef TRANSPORTCONCEPT2D_TILE_GRASS_HPP
-#define TRANSPORTCONCEPT2D_TILE_GRASS_HPP
+#ifndef CUBICVOXELGAME_TILE_GRASS_HPP
+#define CUBICVOXELGAME_TILE_GRASS_HPP
 
 #include "tile_base.hpp"
 
@@ -17,4 +17,4 @@ namespace tile {
     };
 }
 
-#endif //TRANSPORTCONCEPT2D_TILE_GRASS_HPP
+#endif //CUBICVOXELGAME_TILE_GRASS_HPP

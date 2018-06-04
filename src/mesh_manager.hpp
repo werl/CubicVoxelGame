@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-20.
 //
 
-#ifndef TRANSPORTCONCEPT2D_MESH_MANAGER_HPP
-#define TRANSPORTCONCEPT2D_MESH_MANAGER_HPP
+#ifndef CUBICVOXELGAME_MESH_MANAGER_HPP
+#define CUBICVOXELGAME_MESH_MANAGER_HPP
 
 #include <map>
 #include <string>
@@ -20,4 +20,4 @@ namespace mesh {
     };
 }
 
-#endif //TRANSPORTCONCEPT2D_MESH_MANAGER_HPP
+#endif //CUBICVOXELGAME_MESH_MANAGER_HPP

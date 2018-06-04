@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-19.
 //
 
-#ifndef TRANSPORTCONCEPT2D_TIME_MANAGER_HPP
-#define TRANSPORTCONCEPT2D_TIME_MANAGER_HPP
+#ifndef CUBICVOXELGAME_TIME_MANAGER_HPP
+#define CUBICVOXELGAME_TIME_MANAGER_HPP
 
 namespace transport {
     class TimeManager {
@@ -20,4 +20,4 @@ namespace transport {
     };
 }
 
-#endif //TRANSPORTCONCEPT2D_TIME_MANAGER_HPP
+#endif //CUBICVOXELGAME_TIME_MANAGER_HPP

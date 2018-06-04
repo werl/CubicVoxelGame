@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-20.
 //
 
-#ifndef TRANSPORTCONCEPT2D_WORLD_HPP
-#define TRANSPORTCONCEPT2D_WORLD_HPP
+#ifndef CUBICVOXELGAME_WORLD_HPP
+#define CUBICVOXELGAME_WORLD_HPP
 
 #include "tile_base.hpp"
 #include "program.hpp"
@@ -24,4 +24,4 @@ namespace world {
     };
 }
 
-#endif //TRANSPORTCONCEPT2D_WORLD_HPP
+#endif //CUBICVOXELGAME_WORLD_HPP

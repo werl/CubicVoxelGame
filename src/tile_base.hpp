@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-20.
 //
 
-#ifndef TRANSPORTCONCEPT2D_TILE_BASE_HPP
-#define TRANSPORTCONCEPT2D_TILE_BASE_HPP
+#ifndef CUBICVOXELGAME_TILE_BASE_HPP
+#define CUBICVOXELGAME_TILE_BASE_HPP
 
 #include "mesh.hpp"
 #include <glm/glm.hpp>
@@ -45,4 +45,4 @@ namespace tile {
     };
 }
 
-#endif //TRANSPORTCONCEPT2D_TILE_BASE_HPP
+#endif //CUBICVOXELGAME_TILE_BASE_HPP

@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-17.
 //
 
-#ifndef TRANSPORTCONCEPT2D_CONSTANTS_HPP
-#define TRANSPORTCONCEPT2D_CONSTANTS_HPP
+#ifndef CUBICVOXELGAME_CONSTANTS_HPP
+#define CUBICVOXELGAME_CONSTANTS_HPP
 
 namespace constants {
 
@@ -14,4 +14,4 @@ namespace constants {
 
 }
 
-#endif //TRANSPORTCONCEPT2D_CONSTANTS_HPP
+#endif //CUBICVOXELGAME_CONSTANTS_HPP

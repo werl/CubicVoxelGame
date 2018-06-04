@@ -2,8 +2,8 @@
 // Created by Peter Lewis on 2017-11-17.
 //
 
-#ifndef TRANSPORTCONCEPT2D_PROGRAM_HPP
-#define TRANSPORTCONCEPT2D_PROGRAM_HPP
+#ifndef CUBICVOXELGAME_PROGRAM_HPP
+#define CUBICVOXELGAME_PROGRAM_HPP
 
 #include <glbinding/gl41/gl.h>
 
@@ -69,4 +69,4 @@ public:
 };
 
 
-#endif //TRANSPORTCONCEPT2D_PROGRAM_HPP
+#endif //CUBICVOXELGAME_PROGRAM_HPP
