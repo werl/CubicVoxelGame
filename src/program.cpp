@@ -6,10 +6,10 @@
 
 #include <spdlog/spdlog.h>
 
-#define BOOST_FILESYSTEM_NO_DEPRECATED
-#include <boost/filesystem.hpp>
+#include <filesystem>
+#include <fstream>
 
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 Program::Shader::Shader(const std::string shaderName, std::string filePath, gl::GLenum shaderType) {
     this->shaderName = shaderName;
@@ -22,10 +22,8 @@ Program::Shader::Shader(const std::string shaderName, std::string filePath, gl::
     shaderID = gl::glCreateShader(shaderType);
     this->shaderType = shaderType;
 
-    auto *p = new fs::path(filePath);
-
     std::string contents;
-    fs::ifstream fileStream(*p);
+    std::ifstream fileStream(filePath);
     if(fileStream.is_open()) {
         std::string line;
         while(getline(fileStream, line)) {
@@ -34,10 +32,8 @@ Program::Shader::Shader(const std::string shaderName, std::string filePath, gl::
         fileStream.close();
     } else {
         shaderSuccess = false;
-        spdlog::get("console")->error("File \"{}\" could not be read to create a shader\n", filePath);
+        spdlog::get("console")->error("File \"{}\" could not be read to create a shader", filePath);
     }
-
-    delete p;
 
     const char *charContents = contents.c_str();
     gl::glShaderSource(shaderID, 1, &charContents, nullptr);
@@ -56,7 +52,7 @@ Program::Shader::Shader(const std::string shaderName, std::string filePath, gl::
         gl::glDeleteShader(shaderID);
 
         shaderSuccess = false;
-        spdlog::get("console")->error("Shader \"{}\" failed to compile with the following error\n{}\n", shaderName, errorLog[0]);
+        spdlog::get("console")->error("Shader \"{}\" failed to compile with the following error\n{}", shaderName, errorLog[0]);
     }
 
     shaderSuccess = true;
@@ -112,7 +108,7 @@ Program::Program(std::string programName, std::string vertPath, std::string frag
             std::vector<char> errorLog(logSize);
             gl::glGetProgramInfoLog(programID, logSize, nullptr, &errorLog[0]);
 
-            spdlog::get("console")->error("Program \"{}\" failed to compile with the following error\n{s}\n", programName, errorLog[0]);
+            spdlog::get("console")->error("Program \"{}\" failed to compile with the following error\n{s}", programName, errorLog[0]);
         } else {
             programSuccess = true;
         }

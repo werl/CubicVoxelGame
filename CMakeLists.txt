@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 project(TransportConcept3D)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 include_directories(include)
@@ -30,7 +30,7 @@ find_package(ASSIMP 4.1 REQUIRED)
 include_directories(${ASSIMP_INCLUDE_DIRS})
 
 # Find Boost
-find_package(Boost 1.66 REQUIRED COMPONENTS filesystem system container)
+find_package(Boost 1.66 REQUIRED COMPONENTS system container)
 include_directories(${Boost_INCLUDE_DIRS})
 
 file(GLOB SOURCE_FILES "src/*.cpp")

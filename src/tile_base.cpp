@@ -50,7 +50,7 @@ void tile::TileBase::registerTile(TileBase &tile, std::string name) {
 
     auto found = tiles->find(name);
     if(found != tiles->end()) {
-        console->critical("Duplicate tile name registration was attempted: \"{}\"\n", name);
+        console->critical("Duplicate tile name registration was attempted: \"{}\"", name);
         return;
     }
     tiles->insert(std::pair<std::string, tile::TileBase*>(name, &tile));

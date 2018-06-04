@@ -18,11 +18,11 @@ void mesh::MeshManager::registerMesh(Mesh &mesh, std::string meshName) {
     auto found = meshes->find(meshName);
 
     if(found != meshes->end()) {
-        console->critical("Duplicate mesh name registration was attempted: \"{}\"\n", meshName);
+        console->critical("Duplicate mesh name registration was attempted: \"{}\"", meshName);
         return;
     }
     meshes->insert(std::pair<std::string, Mesh*>(meshName, &mesh));
-    console->info("Successfully register mesh \"{}\"\n", meshName);
+    console->info("Successfully register mesh \"{}\"", meshName);
 }
 
 Mesh* mesh::MeshManager::getMesh(std::string meshName) {
@@ -31,7 +31,7 @@ Mesh* mesh::MeshManager::getMesh(std::string meshName) {
         Mesh *ret = meshes->at(meshName);
         return ret;
     } catch(const std::out_of_range &err) {
-        spdlog::get("console")->error("{}\n", err.what());
+        spdlog::get("console")->error("{}", err.what());
         return nullptr;
     }
 }
