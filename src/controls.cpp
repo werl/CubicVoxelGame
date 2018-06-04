@@ -1,13 +1,17 @@
 //
 // Created by Peter Lewis on 2017-11-18.
 //
+#include <glbinding/gl41/gl.h>
 
 #include "controls.hpp"
 #include "time_manager.hpp"
+#include "constants.hpp"
 
 #include <glm/detail/type_mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <cstdio>
+
+#include <spdlog/spdlog.h>
 
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
@@ -27,7 +31,7 @@ float horizontalAngle = 3.14F;
 // initial vertical angle : none
 float verticalAngle = 0.0F;
 // Initial FoV
-float initialFoV = 45.0F;
+float initialFoV = 100.0F;
 
 float minYAngle = float(glm::radians(-90.0));
 float maxYAngle = 0;
@@ -39,7 +43,7 @@ bool rotateCamera;
 double mouseStartX;
 double mouseStartY;
 
-void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
+void computeMatricesFromInputs(GLFWwindow* window) {
     auto deltaTime = transport::TimeManager::INSTANCE()->getDeltaTime();
 
     // Direction : Spherical coordinates to Cartesian coordinates conversion
@@ -78,8 +82,8 @@ void computeMatricesFromInputs(GLFWwindow* window, int width, int height) {
 
     float FoV = initialFoV;
 
-    // Projection matrix : 45 FoV, custom calculated ratio, display range : 0.1 unit <-> 100 units
-    ProjectionMatrix = glm::perspective(glm::radians(FoV), float(width / height), 0.1F, 100.0F);
+    // Projection matrix : 45 FoV, custom calculated ratio, display range : 0.1 unit <-> 100 unit
+    ProjectionMatrix = glm::perspective(glm::radians(FoV), float(constants::width / constants::height), 0.1F, 100.0F);
     // Camera matrix
     ViewMatrix = glm::lookAt(
             position,
@@ -122,4 +126,10 @@ void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
         }
         glfwSetCursorPos(window, mouseStartX, mouseStartY);
     }
+}
+
+void windowResizeCallback(GLFWwindow *window, int xSize, int ySize) {
+    constants::width = xSize;
+    constants::height = ySize;
+    gl::glViewport(0, 0, xSize, ySize);
 }

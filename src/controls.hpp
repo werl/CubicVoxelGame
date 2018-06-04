@@ -8,7 +8,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/detail/type_mat.hpp>
 
-void computeMatricesFromInputs(GLFWwindow* window, int width, int height);
+void computeMatricesFromInputs(GLFWwindow* window);
 glm::mat4 getViewMatrix();
 glm::mat4 getProjectionMatrix();
 
@@ -16,5 +16,6 @@ void keyCallback(GLFWwindow* window, int key, int scanCode, int action, int mods
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+void windowResizeCallback(GLFWwindow* window, int x, int y);
 
 #endif //TRANSPORTCONCEPT2D_CONTROLS_HPP

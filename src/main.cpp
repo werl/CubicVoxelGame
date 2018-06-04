@@ -21,9 +21,6 @@
 namespace spd = spdlog;
 using namespace gl;
 
-int width = 1024;
-int height = 768;
-
 std::string windowTitle = "Transport Game Concept 2D";
 std::string grassTile = "assets/models/road_turn.obj";
 
@@ -51,7 +48,7 @@ int main() {
     // Set the OpenGL profile to the core profile
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(width, height, windowTitle.c_str(), nullptr, nullptr);
+    window = glfwCreateWindow(constants::width, constants::height, windowTitle.c_str(), nullptr, nullptr);
     if (!window) {
         glfwTerminate();
         console->error("GLFW window couldn't be created");
@@ -65,7 +62,7 @@ int main() {
 
     // Set mouse at the center of  the screen
     glfwPollEvents();
-    glfwSetCursorPos(window, width/2, height/2);
+    glfwSetCursorPos(window, constants::width/2, constants::height/2);
     //glfwSwapInterval(1);
 
 
@@ -73,6 +70,7 @@ int main() {
     glfwSetMouseButtonCallback(window, mouseButtonCallback);
     glfwSetScrollCallback(window, scrollCallback);
     glfwSetCursorPosCallback(window, cursorPositionCallback);
+    glfwSetWindowSizeCallback(window, windowResizeCallback);
     // Set the clear colour
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
@@ -103,11 +101,11 @@ int main() {
         transport::TimeManager::INSTANCE()->beginFrame();
 
         /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Ignore if there is an error here, works fine!
 
         program->useProgram();
 
-        computeMatricesFromInputs(window, width, height);
+        computeMatricesFromInputs(window);
         glm::mat4 ProjectionMatrix = getProjectionMatrix();
         glm::mat4 ViewMatrix = getViewMatrix();
         glm::mat4 ModelMatrix = glm::mat4(1.0);
