@@ -6,7 +6,6 @@
 #include <spdlog/spdlog.h>
 
 #include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
 
 #include "time_manager.hpp"
 #include "constants.hpp"
@@ -21,7 +20,7 @@
 namespace spd = spdlog;
 using namespace gl;
 
-std::string windowTitle = "Transport Game Concept 2D";
+std::string windowTitle = "Cubic Voxel Concept";
 std::string grassTile = "assets/models/road_turn.obj";
 
 int main() {
@@ -88,7 +87,6 @@ int main() {
     }
 
     Mesh *mesh = new Mesh(grassTile);
-    //mesh->setProgram(program->getProgramID());
     auto *tile = new tile::TileGrass();
 
     registerTileAndMesh(*tile, *mesh, "grass");
