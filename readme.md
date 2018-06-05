@@ -10,6 +10,7 @@ Libraries and the versions I'm using.
 * [Open Asset Import Library (assimp) 4.1.0](http://assimp.org/)
 * [spdlog 0.17.0](https://github.com/gabime/spdlog) (included)
 * [boost 1.66.0](http://www.boost.org/) - System, Container 
+* [nlohmann/json 3.1.2](https://github.com/nlohmann/json) (included)
 
 ## Compiling
 I have only tested it under Fedora 28 using X11 as of right now, but there are plans to make sure it builds Windows and MacOS as well.
